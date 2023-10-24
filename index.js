@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +14,10 @@ connect.then(() => {
 }).catch((error) => {
   console.log("Could not connect to the database, reason =", error);
 });
+
+app.use(cors({
+  origin: '*'
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
